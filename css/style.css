@@ -77,7 +77,7 @@ header {
   transform: translateY(-10px);
 }
 
-header h1, aside header h2, main section h2, article header h3 {
+header h1, aside header h2, main section h2, article header h3, .all-projects-container header h2 {
   font-family: 'Jersey 15', sans-serif;
   letter-spacing: 1.5px;
 }
@@ -92,7 +92,8 @@ header h1 {
 }
 
 aside header h2,
-main section:last-of-type h2 {
+main section:last-of-type h2,
+.all-projects-container header h2 {
   font-size: clamp(1.8em, 4vw, 2.2em);
   margin-bottom: 20px;
   text-align: center;
@@ -219,7 +220,7 @@ article p {
   font-size: 0.95em;
 }
 
-article footer a {
+article footer a, .btn-detail {
   display: inline-block;
   background-image: linear-gradient(135deg, #00ffe7 0%, #00a299 100%);
   color: #1f2a3a;
@@ -232,7 +233,7 @@ article footer a {
   box-shadow: 0 2px 5px rgba(0, 255, 231, 0.3);
 }
 
-article footer a:hover {
+article footer a:hover, .btn-detail:hover {
   filter: brightness(1.2);
   transform: none;
   box-shadow: 0 2px 5px rgba(0, 255, 231, 0.3);
@@ -289,4 +290,93 @@ body > footer {
     transform: none;
     box-shadow: 0 5px 10px rgba(0, 255, 231, 0.1);
   }
+}
+
+/* ============================================================
+   ESTILOS ESPECÍFICOS PARA PROJECTS.HTML
+   ============================================================ */
+
+.projects-page main {
+    display: block; /* Desactiva el grid de la Home para esta página */
+    max-width: 900px;
+}
+
+.all-projects-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #00ffe7;
+}
+
+.projects-nav-list ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s ease;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+}
+
+.project-item:hover {
+    background-color: #f8ffff;
+}
+
+.project-item h3 {
+    color: #1f2a3a;
+    font-size: 1.2em;
+}
+
+.project-item p {
+    color: #667085;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.project-date {
+    font-weight: bold;
+    color: #00a299;
+    font-size: 0.85em;
+}
+
+.section-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #667085;
+}
+
+.boton-subir {
+    color: #00a299;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boton-subir:hover {
+    text-decoration: underline;
+}
+
+.status-badge {
+    background: #e0e6f0;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    color: #1f2a3a;
+}
+
+html {
+    scroll-behavior: smooth;
 }

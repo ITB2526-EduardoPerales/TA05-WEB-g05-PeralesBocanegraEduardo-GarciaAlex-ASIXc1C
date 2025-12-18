@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Detalle del proyecto: Despliegue y Análisis de Honeypot (T-Pot).">
-    <meta name="keywords" content="honeypot, T-Pot, ciberseguridad, análisis, proyecto">
-    <title>Detalle Proyecto: T-Pot</title>
+    <meta name="description" content="Project Detail: Honeypot Deployment and Analysis (T-Pot).">
+    <meta name="keywords" content="honeypot, T-Pot, cybersecurity, analysis, project">
+    <title>Project Detail: T-Pot</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="../css/styles-tpot.css">
 </head>
-<body>
+<body id="top">
     <header class="capcalera-principal">
         <div class="logo-titulo">
-            <img src="../img/logo1.png" alt="Logo Portafolio" class="logo">
+            <img src="../img/logo1.png" alt="Portfolio Logo" class="logo">
             <h1>Portfolio</h1>
         </div>
         <nav class="menu-navegacio">
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="proyectos.html">Proyectos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -33,42 +32,45 @@
             </header>
             <article class="contingut-article">
                 <header>
-                    <h3>Visión General y Objetivos</h3>
+                    <h3>Overview and Objectives</h3>
                 </header>
 
                 <div class="area-visual-projecte">
-                    <img src="../img/tpot_esquema.png" alt="Esquema de arquitectura de T-Pot">
-                    <p>Diagrama de Arquitectura de Despliegue de T-Pot</p>
+                    <img src="../img/tpot.png" alt="T-Pot Architecture Diagram">
+                    <p>T-Pot Ecosystem</p>
                 </div>
 
                 <p>
-                    Este proyecto consistió en la implementación, configuración y análisis de un sistema Honeypot utilizando T-Pot. T-Pot es una plataforma de código abierto que agrupa múltiples honeypots y herramientas de análisis, facilitando la recolección de datos sobre ataques en tiempo real.
+                    This project involved the implementation, configuration, and analysis of a Honeypot system using T-Pot. T-Pot is an open-source platform that bundles multiple honeypots and analysis tools, facilitating the collection of real-time attack data.
                 </p>
                 <div class="imagen-parrafo">
-                    </div>
+                    <img src="../img/tpot_herramientas.png" alt="T-Pot Tools Overview">
+                </div>
 
                 <p>
-                    <strong>Metodología:</strong> Se desplegó T-Pot en un entorno virtualizado, exponiendo el servicio a Internet para atraer el tráfico malicioso. Todas las datos (intentos de login, explotaciones, etc.) fueron recogidas y visualizadas con Kibana (parte del ELK Stack integrado).
+                    <strong>Methodology:</strong> T-Pot was deployed in a virtualized environment, exposing the service to the Internet to attract malicious traffic. All data (login attempts, exploits, etc.) were collected and visualized using Kibana (part of the integrated ELK Stack).
                 </p>
                 <div class="imagen-parrafo">
-                    </div>
+                    <img src="../img/tpot_visual.png" alt="T-Pot Dashboard Visualization">
+                </div>
 
                 <p>
-                    <strong>Resultados Clave:</strong> El análisis reveló que la mayoría de los ataques eran intentos automatizados de fuerza bruta (SSH y Telnet) originados en diversas regiones. Esta información es crucial para entender los vectores de amenaza más comunes y construir reglas de firewall más robustas. El proyecto sirvió como ejercicio práctico en la defensa preventiva y el análisis de datos de seguridad.
+                    <strong>Key Results:</strong> The analysis revealed that the majority of attacks were automated brute-force attempts (SSH and Telnet) originating from various regions. This information is crucial for understanding common threat vectors and building more robust firewall rules. The project served as a practical exercise in preventive defense and security data analysis.
                 </p>
                 <div class="imagen-parrafo">
-                    </div>
+                    <img src="../img/tpot_ssh.png" alt="SSH and Telnet Attack Logs">
+                </div>
 
             </article>
             <footer>
-                <p>Tecnologías utilizadas: T-Pot, Kibana, Docker, Linux.</p>
-                <a href="#documentacion">Ver Documentación Completa</a>
+                <p>Technologies used: T-Pot, Kibana, Docker, Linux.</p>
+                <a href="#top" class="boton-subir">Back to top</a>
             </footer>
         </section>
     </main>
 
     <footer class="peu-de-pagina-general">
-        <p>&copy; 2025 Eduardo. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Eduardo. All rights reserved.</p>
         <div class="xarxes-socials">
             <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
         </div>
