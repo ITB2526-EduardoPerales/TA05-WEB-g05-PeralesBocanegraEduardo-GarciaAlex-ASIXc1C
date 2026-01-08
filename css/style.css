@@ -380,3 +380,49 @@ body > footer {
 html {
     scroll-behavior: smooth;
 }
+
+/* ... Filtros ... */
+
+.filter-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f8ffff;
+    border: 1px dashed #00ffe7;
+    border-radius: 6px;
+}
+
+#projectSearch {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9em;
+}
+
+#categoryFilter {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Source Code Pro', monospace;
+    background: white;
+}
+
+#projectSearch:focus, #categoryFilter:focus {
+    outline: none;
+    border-color: #00ffe7;
+    box-shadow: 0 0 5px rgba(0, 255, 231, 0.3);
+}
+
+.project-hidden {
+    display: none !important;
+}
+
+/* Ensure the layout doesn't break when items are hidden */
+.projects-nav-list ul {
+    display: flex;
+    flex-direction: column;
+}

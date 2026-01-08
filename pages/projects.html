@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete list of Eduardo's technological projects.">
+    <meta name="description" content="Complete list of Eduardo's technological projects for the ASIR/ASIX portfolio.">
     <title>All Projects | Eduardo's Portfolio</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,7 +12,7 @@
 
     <header class="capcalera-principal">
         <div class="logo-titulo">
-            <img src="../img/logo1.png" alt="Portfolio Logo" class="logo" style="opacity: 1; transform: none;">
+            <img src="../img/logo1.png" alt="Portfolio Logo" class="logo">
             <h1>Portfolio</h1>
         </div>
         <nav class="menu-navegacio">
@@ -33,18 +32,20 @@
                 <h2>Complete Project List</h2>
             </header>
 
-            <nav class="projects-nav-list">
-                <ul>
-                    <li class="project-item">
-                        <div class="project-info">
-                            <span class="project-date">2024</span>
-                            <h3>Honeypot Deployment and Analysis (T-Pot)</h3>
-                            <p>Threat Intelligence and forensic analysis in virtual environments.</p>
-                        </div>
-                        <a href="project_tpot.html" class="btn-detail">View Details</a>
-                    </li>
+            <div class="filter-controls-container">
+                <input type="text" id="projectSearch" placeholder="Search by project name...">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="security">Security</option>
+                    <option value="automation">Automation</option>
+                    <option value="infrastructure">Infrastructure</option>
+                    <option value="networking">Networking</option>
+                </select>
+            </div>
 
-                    <li class="project-item">
+            <nav class="projects-nav-list">
+                <ul id="projectsList">
+                    <li class="project-item" data-category="security">
                         <div class="project-info">
                             <span class="project-date">2025</span>
                             <h3>Incident Reporting System</h3>
@@ -53,19 +54,163 @@
                         <a href="project_irs.html" class="btn-detail">View Details</a>
                     </li>
 
-                    <li class="project-item upcoming">
+                    <li class="project-item" data-category="security">
                         <div class="project-info">
-                            <span class="project-date">Upcoming</span>
-                            <h3>Network Hardening Lab</h3>
-                            <p>Project focused on securing Cisco infrastructure and firewalling.</p>
+                            <span class="project-date">2024</span>
+                            <h3>Honeypot Deployment and Analysis (T-Pot)</h3>
+                            <p>Threat Intelligence and forensic analysis in virtual environments.</p>
                         </div>
-                        <span class="status-badge">In Progress</span>
+                        <a href="project_tpot.html" class="btn-detail">View Details</a>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2024</span>
+                            <h3>Proxmox Cluster & HA</h3>
+                            <p>High Availability configuration for virtualization servers.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="automation">
+                        <div class="project-info">
+                            <span class="project-date">2024</span>
+                            <h3>Ansible Automation</h3>
+                            <p>Automation of deployments and configuration for Linux servers.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2024</span>
+                            <h3>Docker Microservices</h3>
+                            <p>Container orchestration for scalable web applications.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="security">
+                        <div class="project-info">
+                            <span class="project-date">2024</span>
+                            <h3>Network Hardening Lab</h3>
+                            <p>Securing network infrastructure and security auditing.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>Elite Sports Podcast</h3>
+                            <p>Multimedia platform management and audio streaming.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>Active Directory Domain</h3>
+                            <p>Domain services implementation and Group Policy (GPO) management.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="networking">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>pfSense Firewall Setup</h3>
+                            <p>Network segmentation via firewall rules and VPN tunnels.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>Zabbix Monitoring</h3>
+                            <p>Proactive monitoring of network services and server hardware.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>RAID Storage Solutions</h3>
+                            <p>Fault-tolerant storage implementation for critical data.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="networking">
+                        <div class="project-info">
+                            <span class="project-date">2023</span>
+                            <h3>Nginx Reverse Proxy</h3>
+                            <p>Load balancing configuration and SSL/TLS certificates.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="automation">
+                        <div class="project-info">
+                            <span class="project-date">2022</span>
+                            <h3>Bash Backup Tool</h3>
+                            <p>Advanced scripting for automated backup procedures.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="networking">
+                        <div class="project-info">
+                            <span class="project-date">2022</span>
+                            <h3>VLAN Segmentation</h3>
+                            <p>Logical network topology organization for enterprise environments.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2022</span>
+                            <h3>MySQL Performance Tuning</h3>
+                            <p>Optimization and maintenance of relational databases.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="security">
+                        <div class="project-info">
+                            <span class="project-date">2022</span>
+                            <h3>Snort IDS Deployment</h3>
+                            <p>Real-time intrusion detection system configuration.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2021</span>
+                            <h3>Nextcloud Private Cloud</h3>
+                            <p>Private cloud deployment for file management and collaboration.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="automation">
+                        <div class="project-info">
+                            <span class="project-date">2021</span>
+                            <h3>Python Net-Scanner</h3>
+                            <p>Development of a tool for asset and open port scanning.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="networking">
+                        <div class="project-info">
+                            <span class="project-date">2021</span>
+                            <h3>WLAN Enterprise Mgmt</h3>
+                            <p>Centralized wireless management with RADIUS authentication.</p>
+                        </div>
+                    </li>
+
+                    <li class="project-item" data-category="infrastructure">
+                        <div class="project-info">
+                            <span class="project-date">2021</span>
+                            <h3>Office 365 Admin Portal</h3>
+                            <p>User management and cloud security policies.</p>
+                        </div>
                     </li>
                 </ul>
             </nav>
 
             <footer class="section-footer">
-                <p>Showing 3 projects. More coming soon.</p>
+                <p id="projectCounter">Showing 20 projects.</p>
                 <a href="#top" class="boton-subir">Back to top</a>
             </footer>
         </section>
@@ -75,5 +220,6 @@
         <p>&copy; 2025 Eduardo. All rights reserved.</p>
     </footer>
 
+    <script src="../js/interaction.js"></script>
 </body>
 </html>
