@@ -1,110 +1,129 @@
-// js/irs-interaction.js
+// js/irs-interaction.js (ACTUALIZADO)
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. EFECTO DE MÁQUINA DE ESCRIBIR (TYPING EFFECT) ---
+    /* --- 1. FONDO DE PARTÍCULAS --- */
+    // Necesario crear el div en el HTML si no existe, o usar el body
+    let particleContainer = document.getElementById('particles-background');
+    if (!particleContainer) {
+        // Si no existe el div en el HTML del detalle, lo creamos dinámicamente
+        particleContainer = document.createElement('div');
+        particleContainer.id = 'particles-background';
+        particleContainer.style.position = 'fixed';
+        particleContainer.style.top = '0';
+        particleContainer.style.left = '0';
+        particleContainer.style.width = '100%';
+        particleContainer.style.height = '100%';
+        particleContainer.style.zIndex = '-1';
+        document.body.appendChild(particleContainer);
+    }
 
+    // Iniciar Canvas
+    const canvas = document.createElement('canvas');
+    particleContainer.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particlesArray = [];
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.dX = (Math.random() * 0.4) - 0.2;
+            this.dY = (Math.random() * 0.4) - 0.2;
+            this.size = Math.random() * 2 + 1;
+        }
+        update() {
+            if (this.x > canvas.width || this.x < 0) this.dX = -this.dX;
+            if (this.y > canvas.height || this.y < 0) this.dY = -this.dY;
+            this.x += this.dX;
+            this.y += this.dY;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = '#00ffe7';
+            ctx.globalAlpha = 0.5;
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particlesArray = [];
+        let count = (canvas.width * canvas.height) / 15000;
+        for(let i=0; i<count; i++) particlesArray.push(new Particle());
+    }
+
+    function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(let i=0; i<particlesArray.length; i++){
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            for(let j=i; j<particlesArray.length; j++){
+                let dx = particlesArray[i].x - particlesArray[j].x;
+                let dy = particlesArray[i].y - particlesArray[j].y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if(dist < 120){
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(0, 255, 231, ${1 - dist/120})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    initParticles();
+    animateParticles();
+
+
+    /* --- 2. EFECTO DE MÁQUINA DE ESCRIBIR --- */
     const h1Element = document.querySelector('.capcalera-principal h1');
-    const words = ["Portfolio", "Incident Reporting System"];
+    const words = ["Portfolio", "Incident Reporting System"]; // Cambia esto para T-Pot en su archivo
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
 
     function typeEffect() {
         const currentWord = words[wordIndex];
-
         if (isDeleting) {
-            // Borrar
             h1Element.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
         } else {
-            // Escribir
             h1Element.textContent = currentWord.substring(0, charIndex + 1);
             charIndex++;
         }
 
-        let typingSpeed = 150; // Velocidad de escritura base
-
-        if (isDeleting) {
-            typingSpeed /= 2; // Borrar más rápido
-        }
+        let typeSpeed = isDeleting ? 75 : 150;
 
         if (!isDeleting && charIndex === currentWord.length) {
-            // Terminó de escribir, espera un momento y empieza a borrar
-            typingSpeed = 2000; // Pausa larga
+            typeSpeed = 2000;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
-            // Terminó de borrar, pasa a la siguiente palabra
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
-            typingSpeed = 500; // Pausa corta antes de empezar a escribir la siguiente
+            typeSpeed = 500;
         }
-
-        setTimeout(typeEffect, typingSpeed);
+        setTimeout(typeEffect, typeSpeed);
     }
+    if (h1Element) typeEffect();
 
-    // Iniciar el efecto solo si el elemento existe
-    if (h1Element) {
-        typeEffect();
-    }
+    /* --- 3. EFECTO TILT PARA IMÁGENES --- */
+    const images = document.querySelectorAll('.imagen-parrafo img, .area-visual-projecte img');
+    images.forEach(img => {
+        img.addEventListener('mousemove', (e) => {
+            const rect = img.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-
-    // --- 2. APLICACIÓN DEL EFECTO DE INTERACCIÓN (INCLINACIÓN 3D) ---
-
-    // Seleccionar todos los enlaces que deben tener interactividad
-    const interactiveButtons = document.querySelectorAll('.menu-navegacio a, .detall-projecte footer a');
-
-    const MAX_TILT = 5;
-    const MAX_LIGHT_MOVE = 15;
-
-    interactiveButtons.forEach(button => {
-        // La sombra se basa en el estilo definido para el índice o el pie de artículo
-        const isNavLink = button.closest('.menu-navegacio');
-        const originalShadow = isNavLink
-            ? '0 4px 10px rgba(0, 255, 231, 0.4)'
-            : '0 2px 5px rgba(0, 255, 231, 0.3)';
-
-        const handleMouseMove = (e) => {
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const normX = (x - centerX) / centerX;
-            const normY = (y - centerY) / centerY;
-
-            // Calcular inclinación (Tilt)
-            const tiltX = -normY * MAX_TILT;
-            const tiltY = normX * MAX_TILT;
-
-            // Calcular movimiento de luz (Light Move)
-            const lightX = (x / rect.width) * MAX_LIGHT_MOVE * 2 - MAX_LIGHT_MOVE;
-            const lightY = (y / rect.height) * MAX_LIGHT_MOVE * 2 - MAX_LIGHT_MOVE;
-
-            // Aplicar transformaciones sin transición para respuesta inmediata
-            button.style.transition = 'none';
-            button.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
-
-            // Aplicar sombra de neón y relieve
-            button.style.boxShadow = `
-                0 5px 15px rgba(0, 0, 0, 0.4), 
-                ${lightX}px ${lightY}px 20px rgba(0, 255, 231, 0.8), 
-                inset ${-lightX/2}px ${-lightY/2}px 10px rgba(255, 255, 255, 0.2) 
-            `;
-        };
-
-        const handleMouseLeave = () => {
-            // Restaurar transiciones y estado original
-            button.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
-            button.style.transform = 'none';
-            // Restaurar la sombra original
-            button.style.boxShadow = originalShadow;
-        };
-
-        // Asignar listeners
-        button.addEventListener('mousemove', handleMouseMove);
-        button.addEventListener('mouseleave', handleMouseLeave);
+            img.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.02)`;
+        });
+        img.addEventListener('mouseleave', () => {
+            img.style.transform = 'none';
+        });
     });
 });
